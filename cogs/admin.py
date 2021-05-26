@@ -14,17 +14,20 @@ class Admin(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(kick_members=True)
-    async def kick(self, ctx, member: discord.Member, *,reason=None):
+    async def kick(self, ctx, member: discord.Member, message):
         await ctx.channel.purge(limit=1)
         embed=discord.Embed(
             title='User Punished',
-            description= f'✅ {member.mention} ({member.id}) has been succesfully kicked',
+            description= f'✅ {member.mention} ({member.id}) has been successfully kicked',
             colour=0x008000
         )
 
         embed.set_footer(text='Selcouth Development')
-        await ctx.channel.purge(limit=1)
-        await ctx.send(embed=embed)
+        if message.content.endswith(' -s'):
+            pass
+        else:
+            await ctx.channel.purge(limit=1)
+            await ctx.send(embed=embed)
 
     @commands.command()
     @commands.has_permissions(ban_members=True)
@@ -32,7 +35,7 @@ class Admin(commands.Cog):
         await ctx.channel.purge(limit=1)
         embed=discord.Embed(
             title='User Punished',
-            description= f'✅ {member.mention} ({member.id}) has been succesfully banned',
+            description= f'✅ {member.mention} ({member.id}) has been successfully banned',
             colour=0x008000
         )
 
@@ -42,11 +45,11 @@ class Admin(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(manage_messages=True)
-    async def mute(self, ctx, member: discord.Member):
+    async def mute(self, ctx, member: discord.Member, message=None):
         await ctx.channel.purge(limit=1)
         embed=discord.Embed(
             title='User Punished',
-            description= f'✅ {member.mention} ({member.id}) has been succesfully muted',
+            description= f'✅ {member.mention} ({member.id}) has been successfully muted',
             colour=0x008000
         )
 
@@ -60,6 +63,20 @@ class Admin(commands.Cog):
             await ctx.send('{} is already muted'.format(member))
         else:
             await ctx.send(embed=embed)
+            await member.add_roles(mutedRole)
+
+    @commands.command(aliases=['smute'])
+    @commands.has_permissions(manage_messages=True)
+    async def silentmute(self, ctx, member: discord.Member, message=None):
+        await ctx.channel.purge(limit=1)
+        mutedRole = discord.utils.get(ctx.guild.roles, name='Muted')
+        
+        
+        role = discord.utils.find(lambda r: r.name =='Muted', ctx.message.guild.roles)
+
+        if role in member.roles:
+            await ctx.send('{} is already muted'.format(member))
+        else:
             await member.add_roles(mutedRole)
 
     @commands.command(aliases=['tmute'])
@@ -96,7 +113,7 @@ class Admin(commands.Cog):
         await ctx.channel.purge(limit=1)
         embed=discord.Embed(
             title='-',
-            description= f'✅ {member.mention} ({member.id}) has been succesfully unmuted',
+            description= f'✅ {member.mention} ({member.id}) has been successfully unmuted',
             colour=0x008000
         )
 
@@ -119,7 +136,7 @@ class Admin(commands.Cog):
         await ctx.channel.purge(limit=1)
         embed=discord.Embed(
             title='-',
-            description= f'✅ Voice Channel has been succesfully muted',
+            description= f'✅ Voice Channel has been successfully muted',
             colour=0x008000
         )
 
@@ -182,7 +199,7 @@ class Admin(commands.Cog):
         await ctx.channel.purge(limit=1)
         embed=discord.Embed(
             title='-',
-            description= f'✅ Voice Channel has been succesfully unmuted',
+            description= f'✅ Voice Channel has been successfully unmuted',
             colour=0x008000
         )
 
@@ -283,7 +300,7 @@ class Admin(commands.Cog):
     async def freeze(self, ctx, member: discord.Member):
         embed=discord.Embed(
             title='User Punished',
-            description= f'✅ {member.mention} ({member.id}) has been succesfully frozen',
+            description= f'✅ {member.mention} ({member.id}) has been successfully frozen',
             colour=0x008000
         )
 
@@ -306,7 +323,7 @@ class Admin(commands.Cog):
     async def unfreeze(self, ctx, member: discord.Member):
         embed=discord.Embed(
             title='-',
-            description= f'✅ {member.mention} ({member.id}) has been succesfully unfrozen',
+            description= f'✅ {member.mention} ({member.id}) has been successfully unfrozen',
             colour=0x008000
         )
 
@@ -328,13 +345,13 @@ class Admin(commands.Cog):
     async def ss(self, ctx, member: discord.Member):
         frozen=discord.Embed(
             title='User Punished',
-            description= f':white_check_mark: {member.mention} ({member.id}) has been succesfully frozen',
+            description= f':white_check_mark: {member.mention} ({member.id}) has been successfully frozen',
             colour=0x008000
         )
 
         not_frozen=discord.Embed(
             title='User Punished',
-            description= f':white_check_mark: {member.mention} ({member.id}) has been succesfully unfrozen',
+            description= f':white_check_mark: {member.mention} ({member.id}) has been successfully unfrozen',
             colour=0x008000
         )
 
