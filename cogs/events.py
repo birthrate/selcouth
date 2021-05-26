@@ -55,7 +55,7 @@ $$\   $$ |$$   ____|$$ |$$ |      $$ |  $$ |$$ |  $$ |  $$ |$$\ $$ |  $$ |
         em.set_footer(text='Selcouth Development')
 
         await member.send(embed=em)
-        # await channel.send(embed=embed)
+        await channel.send(embed=embed)
         
 
         

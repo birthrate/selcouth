@@ -105,6 +105,26 @@ class Admin(commands.Cog):
             await asyncio.sleep(tempmute)
             await member.remove_roles(mutedRole)
 
+    @commands.command(aliases=['stmute'])
+    @commands.has_permissions(administrator=True)
+    async def silenttempmute(self, ctx, member: discord.Member, time=None):
+        await ctx.channel.purge(limit=1)
+
+        time_convert = {"s":1, "m":60, "h":3600,"d":86400}
+        tempmute = int(time[0]) * time_convert[time[-1]]
+
+        mutedRole = discord.utils.get(ctx.guild.roles, name='Muted')
+        
+        
+        role = discord.utils.find(lambda r: r.name =='Muted', ctx.message.guild.roles)
+
+        if role in member.roles:
+            await ctx.send('{} is already muted'.format(member))
+        elif time != None:
+            await member.add_roles(mutedRole)
+            await asyncio.sleep(tempmute)
+            await member.remove_roles(mutedRole)
+
 
 
     @commands.command()
