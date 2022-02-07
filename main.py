@@ -2,7 +2,7 @@ import discord
 import os
 from discord.ext import commands
 
-TOKEN = 'ODI2Mjc3NjYyODQ1ODI5MTIw.YGKJCg.xnJiCgP62fMKdYJXvTcoEe75B7Y'
+TOKEN = 'TOKEN'
 
 intents = discord.Intents().all()
 client = commands.Bot(command_prefix = '.', intents = intents)
@@ -53,7 +53,7 @@ async def reload(ctx, extension):
 # @commands.is_owner()
 # async def restart(self, ctx):
 #     await ctx.bot.logout()
-#     await ctx.bot.login("ODI2Mjc3NjYyODQ1ODI5MTIw.YGKJCg.xnJiCgP62fMKdYJXvTcoEe75B7Y", bot=True)
+#     await ctx.bot.login("TOKEN", bot=True)
 #     embed = discord.Embed(
 #     title = '',
 #     description = 'Restarted Successfully',
