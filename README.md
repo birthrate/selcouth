@@ -1,2 +1,2 @@
 ## Selcouth Bot
-### Developed by kenny#1111
+### Developed by clare#7804
