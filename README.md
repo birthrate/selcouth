@@ -1,2 +1,1 @@
-## Selcouth Bot
-### Developed by clare#7804
+python bot I made for my old discord server, code is broken and outdated.
